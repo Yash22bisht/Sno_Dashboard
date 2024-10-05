@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snooker Frames Analytics Dashboard</title>
+    <link rel="stylesheet" href="Owndash.css">
+</head>
+<body>
+    <h1>Snooker Frames Analytics Dashboard</h1>
+
+    <h2>Select Date</h2>
+    <input type="date" id="datePicker" />
+
+    <div id="selectedDateBox"></div> <!-- Display details for selected date -->
+
+    <h2>Total Table Money</h2>
+    <div id="totalMoneyBox"></div> <!-- Display total table money -->
+
+    <h2>Graphical Representation</h2>
+    <canvas id="analyticsChart" width="400" height="200"></canvas> <!-- Chart.js canvas -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+    <script src="Owndash.js"></script>
+</body>
+</html>
