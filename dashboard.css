@@ -1,41 +1,51 @@
+/* Combined Custom Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', Arial, sans-serif;  /* Combining both fonts */
+    background-color: #f9fafb;  /* Kept the lighter background */
+    margin: 20px;  /* Added margin from second snippet */
 }
 
 h1 {
-    text-align: center;
+    color: #2c3e50;  /* Using the color from the first snippet */
+    font-weight: 600;
+    text-align: center;  /* Added the center alignment from the second snippet */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    background-color: #ffffff;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
+    background-color: #fff;  /* Retained white background for consistency */
+    border: 1px solid #ddd;  /* Added border from second snippet */
 }
 
 th, td {
     padding: 12px;
     text-align: left;
+    border: 1px solid #ddd;  /* Retained borders for table */
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #f2f2f2;  /* Light background color for headers */
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9;  /* Striped effect */
 }
 
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: #f1f1f1;  /* Hover effect */
 }
 
 #analyticsTableBody td, #analyticsTableBody th {
-    text-align: center;
+    text-align: center;  /* Specific rule for the analytics table */
+}
+
+input[type="date"] {
+    font-size: 16px;  /* Consistent font size for date input */
+}
+
+/* Optional shadow effect */
+.shadow-sm {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
