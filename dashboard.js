@@ -1,7 +1,7 @@
 // Function to get 'studio' from the URL query parameter
 function getStudioFromUrl() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('studio') || 'defaultStudio'; // Fallback to 'defaultStudio' if not provided
+    return params.get('studio') || 'Studio 111'; // Fallback to 'defaultStudio' if not provided
 }
 
 // Helper function to get other URL parameters
