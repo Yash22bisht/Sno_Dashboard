@@ -176,7 +176,7 @@ function setDefaultDate() {
 
 // Initialize the app and fetch data
 async function init() {
-    const studio = getStudioFromUrl();
+    const studio = getParameterByName("studio");
     console.log('Studio:', studio);
 
     const currentDate = new Date();
