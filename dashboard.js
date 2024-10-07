@@ -185,6 +185,7 @@ async function init() {
 
     try {
         const framesData = await fetchData('frames', studio);
+        console.log(framesData)
         const topupData = await fetchData('topup', studio, true);
 
         if (framesData.length === 0 || topupData.length === 0) {
