@@ -167,6 +167,79 @@ function populateTopupTable(groupedData) {
     cashTotalElem.textContent = cashTotal.toFixed(2);
 }
 
+
+function updateChart(groupedData) {
+    const ctx = document.getElementById('analyticsChart').getContext('2d');
+
+    const labels = Object.keys(groupedData);
+    const durations = labels.map(date => groupedData[date].duration);
+    const totalMoney = labels.map(date => groupedData[date].totalMoney);
+
+    // Colors for each bar: normal color or different for Sundays
+    const backgroundColors = labels.map(date => {
+        const dayOfWeek = new Date(date).getDay(); // Get the day of the week (0 for Sunday)
+        return dayOfWeek === 0 ? 'rgba(255, 99, 132, 0.2)' : 'rgba(75, 192, 192, 0.2)'; // Red for Sundays
+    });
+
+    const borderColors = labels.map(date => {
+        const dayOfWeek = new Date(date).getDay();
+        return dayOfWeek === 0 ? 'rgba(255, 99, 132, 1)' : 'rgba(75, 192, 192, 1)'; // Red for Sundays
+    });
+
+    if (analyticsChart) {
+        analyticsChart.destroy(); // Destroy existing chart instance if it exists
+    }
+
+    analyticsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Total Duration (minutes)',
+                    data: durations,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                },
+                {
+                    label: 'Total Money',
+                    data: totalMoney,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Values'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+}
+
+function updateTotalMoneyBox(totalTableMoney) {
+    const totalMoneyBox = document.getElementById('totalMoneyBox');
+    if (!totalMoneyBox) {
+        console.error('Element with ID "totalMoneyBox" not found.');
+        return;
+    }
+
+    totalMoneyBox.innerHTML = `<p>Total Table Money: ₹${totalTableMoney.toFixed(2)}</p>`;
+}
+
 // Set default date
 function setDefaultDate() {
     const dateSelector = document.querySelector('#dateSelector');
@@ -209,6 +282,26 @@ async function init() {
                 populateTopupTable(topupGroupedData);
             }
         });
+
+                // Display the chart for the selected month
+        updateChart(groupedData);
+        updateTotalMoneyBox(totalTableMoney);
+
+        // Set up date click event listeners
+        const analyticsChartCanvas = document.getElementById('analyticsChart');
+        if (analyticsChartCanvas) {
+            analyticsChartCanvas.onclick = function(evt) {
+                const points = analyticsChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, false);
+                if (points.length > 0) {
+                    const firstPoint = points[0];
+                    const label = analyticsChart.data.labels[firstPoint.index];
+                    updateSelectedDateBox(groupedData, topupGroupedData, label);
+                }
+            };
+        }
+
+        // Initialize total received box with 0 cash and online values
+        updateTotalReceivedBox(0, 0);
     } catch (error) {
         console.error('Error initializing app:', error);
     }
