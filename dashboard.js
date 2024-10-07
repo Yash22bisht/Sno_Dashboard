@@ -186,8 +186,9 @@ function updateChart(groupedData) {
         return dayOfWeek === 0 ? 'rgba(255, 99, 132, 1)' : 'rgba(75, 192, 192, 1)'; // Red for Sundays
     });
 
-    if (analyticsChart) {
-        analyticsChart.destroy(); // Destroy existing chart instance if it exists
+    // Check if analyticsChart exists and is an instance of Chart before destroying it
+    if (analyticsChart instanceof Chart) {
+        analyticsChart.destroy();
     }
 
     analyticsChart = new Chart(ctx, {
@@ -229,6 +230,7 @@ function updateChart(groupedData) {
         }
     });
 }
+
 
 function updateTotalMoneyBox(totalTableMoney) {
     const totalMoneyBox = document.getElementById('totalMoneyBox');
