@@ -167,6 +167,7 @@ function populateTopupTable(groupedData) {
     cashTotalElem.textContent = cashTotal.toFixed(2);
 }
 
+let analyticsChart = null; 
 
 function updateChart(groupedData) {
     const ctx = document.getElementById('analyticsChart').getContext('2d');
