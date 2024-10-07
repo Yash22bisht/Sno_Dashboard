@@ -167,6 +167,34 @@ function populateTopupTable(groupedData) {
     cashTotalElem.textContent = cashTotal.toFixed(2);
 }
 
+function updateSelectedDateBox(groupedData, topupGroupedData, selectedDate) {
+    const selectedDateBox = document.getElementById('selectedDateBox');
+    if (!selectedDateBox) {
+        console.error('Element with ID "selectedDateBox" not found.');
+        return;
+    }
+
+    const dateString = new Date(selectedDate).toISOString().split('T')[0];
+    const data = groupedData[dateString];
+    const topupData = topupGroupedData[dateString];
+
+    if (data) {
+        selectedDateBox.innerHTML = `
+            <h2>Details for ${dateString} (${data.dayOfWeek})</h2>
+            <p>Total Duration: ${data.duration.toFixed(2)} minutes</p>
+            <p>Total Money: ₹${data.totalMoney.toFixed(2)}</p>
+        `;
+    } else {
+        selectedDateBox.innerHTML = `<p>No data available for ${dateString}</p>`;
+    }
+
+    if (topupData) {
+        updateTotalReceivedBox(topupData.cash, topupData.online);
+    } else {
+        updateTotalReceivedBox(0, 0);
+    }
+}
+
 let analyticsChart = null; 
 
 function updateChart(groupedData) {
