@@ -299,6 +299,7 @@ async function init() {
 
         const { groupedData, totalTableMoney } = groupDataByDate(framesData, currentMonth, currentYear);
         const topupGroupedData = groupTopupDataByDate(topupData, currentMonth, currentYear);
+        console.log("topupGroupedData",topupGroupedData)
 
         // Populate table with grouped data
         populateTopupTable(topupGroupedData);
