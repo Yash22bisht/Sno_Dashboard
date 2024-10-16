@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snooker Frames Analytics Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <h1>Snooker Frames  Dashboard</h1>
 
+    <h2>Select Date</h2>
+    <input type="date" id="datePicker" />
+
+    <div id="selectedDateBox"></div> <!-- Display details for selected date -->
+
+    <h2>Total Table Money</h2>
+    <div id="totalMoneyBox"></div> <!-- Display total table money -->
+
+    <h2>Graphical Representation</h2>
+    <canvas id="analyticsChart" width="400" height="200"></canvas> <!-- Chart.js canvas -->
+
+<div class="container my-4">
+        <!-- Heading -->
+        <h1>Topup Data</h1>
+
+        <!-- Modern Summary Box -->
+        <div class="summary-box">
+    <p>Total Topup: <span id="totalTopup">0.00</span></p>
+    <p>Online Total: <span id="onlineTotal">0.00</span></p>
+    <p>Cash Total: <span id="cashTotal">0.00</span></p>
+</div>
+
+        <!-- Date Selector -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="input-group">
+                    <label for="dateSelector" class="input-group-text">Select Date</label>
+                    <input type="date" id="dateSelector" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Topup Table -->
+        <div class="table-responsive">
+            <table id="topupTable" class="table table-bordered table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Total Topup</th>
+                        <th>Online</th>
+                        <th>Cash</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+    <script src="dashboard.js"></script>
+</body>
+</html>
