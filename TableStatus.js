@@ -5,7 +5,7 @@ async function fetchData(table, studio) {
   return data[0];
 }
 
-function getParameterByName(name, url = window.location.href) {
+function getParameterByNameSt(name, url = window.location.href) {
   name = name.replace(/[\[\]]/g, "\\$&");
   const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
   const results = regex.exec(url);
@@ -15,8 +15,8 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 async function createTableWisePerformanceGraph() {
-  //const clubName = getParameterByName("clubname");
-  const studio = getParameterByName("studio");
+  //const clubName = getParameterByNameSt("clubname");
+  const studio = getParameterByNameSt("studio");
   const data = await fetchData("tabledets", studio);
   console.log(data);
 
