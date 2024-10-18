@@ -89,3 +89,5 @@ function createGraph(data, labels, canvasId, graphTitle, backgroundColors) {
     },
   });
 }
+
+createTableWisePerformanceGraph();
