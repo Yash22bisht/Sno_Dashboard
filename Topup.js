@@ -65,7 +65,7 @@ function groupTopupDataByDate(topupData) {
         } else if (mode === 'online') {
             groupedData[businessDay].online += amount;
         } else {
-            console.error('Unknown mode:', topup.Mode);
+            console.error('Unknown mode:', topup);
         }
     });
 
