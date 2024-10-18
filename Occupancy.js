@@ -53,7 +53,7 @@ function filterDataByDate(tableData, targetDate) {
         const startDate = toIST(new Date(entry.StartTime));
         const offDate = toIST(new Date(entry.OffTime));
 
-        console.log(`Entry Start: ${startDate}, Entry End: ${offDate}`);
+      //  console.log(`Entry Start: ${startDate}, Entry End: ${offDate}`);
 
         const targetDateObj = new Date(targetDate);
         
@@ -63,7 +63,7 @@ function filterDataByDate(tableData, targetDate) {
             (startDate < targetDateObj && offDate > targetDateObj)
         );
 
-        console.log(`Is valid for target date (${targetDate})?`, isValid);
+       // console.log(`Is valid for target date (${targetDate})?`, isValid);
         return isValid;
     });
 }
