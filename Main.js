@@ -255,7 +255,10 @@ async function init1() {
 
     try {
         const framesData = await fetchData1(table, Studio);
+        console.log("framesData",framesData)
+
         const topupData = await fetchData2(table, Studio);
+        console.log("topupData",topupData)
 
         if (framesData.length === 0 || topupData.length === 0) {
             console.error('No data available.');
