@@ -40,3 +40,52 @@ async function createTableWisePerformanceGraph() {
     barColors
   );
 }
+
+
+function createGraph(data, labels, canvasId, graphTitle, backgroundColors) {
+  var ctx = document.getElementById(canvasId).getContext("2d");
+  var myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: graphTitle,
+          data: data,
+          backgroundColor: backgroundColors || "#01AB7A", // Use provided colors or default color
+          borderColor: "#018a5e",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          display: canvasId !== "dateWisePerformanceChart", // Hide axis for 'dateWisePerformanceChart'
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          callbacks: {
+            title: function (context) {
+              return `Details for ${labels[context[0].dataIndex]}`;
+            },
+          },
+        },
+      },
+      title: {
+        display: true,
+        text: graphTitle,
+        font: {
+          size: 18,
+          weight: "bold",
+        },
+        color: "#01AB7A",
+      },
+    },
+  });
+}
