@@ -1,5 +1,5 @@
 async function fetchData(table, studio) {
-  const url = `apis/data/${table}/${studio}`;
+  const url = ` https://app.snookerplus.in/apis/data/${table}/${studio}`;
   const response = await fetch(url);
   const data = await response.json();
   return data[0];
@@ -15,7 +15,7 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 async function createTableWisePerformanceGraph() {
-  const clubName = getParameterByName("clubname");
+  //const clubName = getParameterByName("clubname");
   const studio = getParameterByName("studio");
   const data = await fetchData("tabledets", studio);
   console.log(data);
