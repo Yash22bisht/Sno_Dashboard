@@ -241,7 +241,7 @@ function updateTotalMoneyBox(totalTableMoney) {
     totalMoneyBox.innerHTML = `<p>Total Table Money: ₹${totalTableMoney.toFixed(2)}</p>`;
 }
 
-async function init() {
+async function init1() {
     const table = 'frames';
 
     // Get the Studio parameter from the URL
@@ -289,4 +289,4 @@ async function init() {
     }
 }
 
-window.onload = init;
+window.onload = init1;
