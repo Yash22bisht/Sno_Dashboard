@@ -213,7 +213,7 @@ function displayTableOccupancyChart(occupancyData) {
 }
 
 // Initialize the script with the correct date
-async function init() {
+async function init3() {
     const studio = getStudioFromUrl();  // Get studio from URL
     const dateInput = document.getElementById('dateSelector');
 
@@ -238,4 +238,4 @@ async function loadDataForDate(studio, targetDate) {
 }
 
 // Initialize the script
-init();
+init3();
