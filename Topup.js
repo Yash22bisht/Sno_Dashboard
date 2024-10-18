@@ -131,9 +131,9 @@ function filterByDate(groupedData, selectedDate) {
 }
 
 function setDefaultDate() {
-    const dateSelector = document.querySelector('#dateSelector');
+    const dateSelectorTop = document.querySelector('#dateSelectorTop');
     const today = new Date().toISOString().split('T')[0];
-    dateSelector.value = today;
+    dateSelectorTop.value = today;
 }
 
 async function init2() {
@@ -154,7 +154,7 @@ async function init2() {
 
     setDefaultDate();
 
-    document.querySelector('#dateSelector').addEventListener('change', (event) => {
+    document.querySelector('#dateSelectorTop').addEventListener('change', (event) => {
         const selectedDate = event.target.value;
         if (selectedDate) {
             const filteredData = filterByDate(groupedData, selectedDate);
