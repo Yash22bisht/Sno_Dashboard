@@ -145,6 +145,7 @@ function updateSelectedDateBox(groupedData, topupGroupedData, selectedDate) {
         return;
     }
 
+    console.log("selectedDate",selectedDate);
     const dateString = new Date(selectedDate).toISOString().split('T')[0];
     const data = groupedData[dateString];
     const topupData = topupGroupedData[dateString];
@@ -277,6 +278,7 @@ async function init1() {
                 if (points.length > 0) {
                     const firstPoint = points[0];
                     const label = analyticsChart.data.labels[firstPoint.index];
+                    consle.log("label is ",label);
                     updateSelectedDateBox(groupedData, topupGroupedData, label);
                 }
             };
