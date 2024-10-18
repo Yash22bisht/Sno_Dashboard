@@ -136,7 +136,7 @@ function setDefaultDate() {
     dateSelector.value = today;
 }
 
-async function init() {
+async function init2() {
     // Get studio name from the URL
     const studio = getStudioFromUrl();
     console.log('Studio:', studio);
@@ -165,4 +165,4 @@ async function init() {
     });
 }
 
-window.addEventListener('load', init);
+window.addEventListener('load', init2);
