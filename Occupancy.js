@@ -215,7 +215,7 @@ function displayTableOccupancyChart(occupancyData) {
 // Initialize the script with the correct date
 async function init3() {
     const studio = getStudioFromUrl();  // Get studio from URL
-    const dateInput = document.getElementById('dateSelector');
+    const dateInput = document.getElementById('dateSelectorOccup');
 
     const today = getCurrentDateInIST();  // Get the current date in IST
     dateInput.value = today;
