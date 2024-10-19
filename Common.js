@@ -1,5 +1,5 @@
 async function fetchData(table, Studio) {
-    const url = ` https://app.snookerplus.in/apis/data/${table}/${studio}`;
+    const url = ` https://app.snookerplus.in/apis/data/${table}/${Studio}`;
     console.log('Fetching data from:', url);
 
     try {
