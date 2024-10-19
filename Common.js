@@ -18,3 +18,13 @@ async function fetchData(table, Studio) {
         return []; // Return an empty array or handle the error as needed
     }
 }
+
+
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&'); // Escape brackets
+    const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`, 'i'); // Case-insensitive matching
+    const results = regex.exec(url);
+    if (!results) return null; // If no result is found
+    if (!results[2]) return ''; // If no value is found
+    return decodeURIComponent(results[2].replace(/\+/g, ' ')); // Decode and replace "+" with space
+}
