@@ -32,7 +32,7 @@ async function fetchTableData(studio) {
         }
 
         const data = await response.json();
-        console.log('Full API response:', data);
+        // console.log('Full API response:', data);
 
         if (!data || data.length === 0) {
             console.warn('API returned empty data or invalid structure:', data);
@@ -50,6 +50,7 @@ function filterDataByDate(tableData, targetDate) {
     console.log('Filtering data for target date:', targetDate);
 
     return tableData.filter(entry => {
+        // console.log('entry.StartTime', entry.StartTime)
         const startDate = toIST(new Date(entry.StartTime));
         const offDate = toIST(new Date(entry.OffTime));
 
@@ -213,24 +214,25 @@ function displayTableOccupancyChart(occupancyData) {
 }
 
 // Initialize the script with the correct date
-async function init3() {
-    const studio = getStudioFromUrl();  // Get studio from URL
+async function init3(tableData) {
+    console.log('tableData', tableData)
+    // const studio = getStudioFromUrl();  // Get studio from URL
     const dateInput = document.getElementById('dateSelectorOccup');
 
     const today = getCurrentDateInIST();  // Get the current date in IST
     dateInput.value = today;
 
-    await loadDataForDate(studio, today);
+    await loadDataForDate(tableData, today);
 
     dateInput.addEventListener('change', async (event) => {
         const selectedDate = event.target.value;
         console.log('Date selected:', selectedDate);
-        await loadDataForDate(studio, selectedDate);
+        await loadDataForDate(tableData, selectedDate);
     });
 }
 
-async function loadDataForDate(studio, targetDate) {
-    const tableData = await fetchTableData(studio);
+async function loadDataForDate(tableData, targetDate) {
+    // const tableData = await fetchData("frames",studio);
     const filteredData = filterDataByDate(tableData, targetDate);
     const occupancyData = getTableOccupancy(filteredData, targetDate);
 
@@ -238,4 +240,4 @@ async function loadDataForDate(studio, targetDate) {
 }
 
 // Initialize the script
-init3();
+// init3();
