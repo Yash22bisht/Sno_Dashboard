@@ -1,0 +1,62 @@
+*{
+    color: aliceblue;
+
+}
+
+body{
+    margin: 0px 0px;
+    background: #22252B;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: 5px; */
+    padding: 10px 0 0 0 ;
+    background: #33363B;
+}
+#dash{
+    color: #01AB7A;
+    font-size: 48px;
+    font-weight: bold;
+    margin: 20px 16px 25px 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+#logo{
+    width: 300px;
+    height:  65px;
+}
+
+#studioDets{
+    background: #33363B;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+
+.headings{
+    display: inline;
+    color: #01AB7A;
+    margin: 0 0 0 38%  ;
+}
+
+.filter{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+}
+#datePicker{
+    color: #22252B;
+    width:120px;
+    height: 25px;
+    border-radius: 8px;
+    padding: 2px 5px;
+}
+/* 
+#tableOccupancyChart{
+    height: 50px;
+} */

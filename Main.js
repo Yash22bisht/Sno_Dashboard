@@ -102,11 +102,14 @@ function getDayOfWeek(date) {
 }
 
 function groupDataByDate(frames, month, year) {
+  console.log('month', month);
+  
   const groupedData = {};
   let totalTableMoney = 0;
 
   frames.forEach((frame) => {
     const date = convertToIST(frame.StartTime);
+    // console.log('date', date)
     if (!date || isNaN(date.getTime())) {
       // Handle invalid dates
       console.error("Invalid date:", frame.StartTime);
@@ -117,11 +120,18 @@ function groupDataByDate(frames, month, year) {
     const totalMoney = parseFloat(frame.TotalMoney) || 0;
 
     const frameMonth = date.getMonth(); // 0-11 for Jan-Dec
+    // console.log('frameMonth', frameMonth)
     const frameYear = date.getFullYear();
 
     // Filter only the frames in the current month and year
     if (frameMonth === month && frameYear === year) {
-      const dateString = date.toISOString().split("T")[0]; // Get the date in YYYY-MM-DD format
+      // console.log('frameMonthSelected', frameMonth)
+      const day = date.getDate();       // Get day of the month
+      const monthString = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-indexed
+      const yearString = date.getFullYear();
+      
+      const dateString = `${yearString}-${monthString}-${day.toString().padStart(2, '0')}`; // Get the date in YYYY-MM-DD format
+      // console.log('dateString :', dateString ,"\n  frameMonth :",frameMonth ,"\n date :",date);
       const dayOfWeek = getDayOfWeek(date);
 
       if (!groupedData[dateString]) {
@@ -133,7 +143,7 @@ function groupDataByDate(frames, month, year) {
       totalTableMoney += totalMoney; // Add to total table money
     }
   });
-
+  // console.log('groupedData', groupedData)
   return { groupedData, totalTableMoney };
 }
 

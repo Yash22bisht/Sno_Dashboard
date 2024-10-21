@@ -5,24 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snooker Frames Analytics Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="dashStyle.css">
 </head>
 
 <body>
-    <h1>Snooker Frames Dashboard</h1>
+    <header>
+        <img id="logo"
+            src="https://img1.wsimg.com/isteam/ip/9e11a5db-9940-4d56-b773-7f8426617dc8/Frame%2012995%20(1).png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25"
+            alt="Snooker">
+        <h1 id="dash"> Dashboard</h1>
+    </header>
 
-    <h2>Select Date</h2>
-    <input type="date" id="datePicker" />
+    <div id="studioDets">
+        <h1 class="headings">Studio Details</h1>
+        <div class="filter">
+            <h3>Select Date</h3>
+            <input type="date" id="datePicker" />
+        </div>
 
-    <div id="selectedDateBox"></div> <!-- Display details for selected date -->
+        <div id="selectedDateBox"></div> <!-- Display details for selected date -->
 
-    <h2>Total Table Money</h2>
-    <div id="totalMoneyBox"></div> <!-- Display total table money -->
+        <h2>Total Table Money</h2>
+        <div id="totalMoneyBox"></div> <!-- Display total table money -->
 
-    <h2>Graphical Representation</h2>
-    <canvas id="analyticsChart" width="400" height="200"></canvas> <!-- Chart.js canvas -->
+        <h2>Graphical Representation</h2>
+        <canvas id="analyticsChart" width="400" height="200"></canvas> <!-- Chart.js canvas -->
 
-    <canvas id="tableWisePerformanceChart" width="400" height="200"></canvas>
+        <canvas id="tableWisePerformanceChart" width="400" height="200"></canvas>
+
+    </div>
+
 
     <!-- occupancy -->
 
@@ -30,7 +42,7 @@
         <header>
             <h1>Snooker Table Occupancy </h1>
         </header>
-    
+
         <div class="container">
             <div style="text-align: left;">
                 <label for="dateSelectorOccup">Select Date:</label>
@@ -64,7 +76,7 @@
     </div>
     <label for="month">Select Month</label>
     <select name="month" id="month">
-        
+
     </select>
 
     <!-- Topup Table -->
