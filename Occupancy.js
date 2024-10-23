@@ -110,6 +110,8 @@ function displayTableOccupancyChart(occupancyData) {
   chartContainer.innerHTML = "";
 
   const canvas = document.createElement("canvas");
+  canvas.className = "graph";
+  canvas.style.height = "50vw"
   chartContainer.appendChild(canvas);
 
   const datasets = [];
@@ -122,7 +124,7 @@ function displayTableOccupancyChart(occupancyData) {
       return {
         x: entry.date,
         y: [entry.startTime, entry.offTime], // Start and end times as y values
-      };
+      };  
     });
 
     const randomColor = `rgba(${Math.floor(

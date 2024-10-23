@@ -186,6 +186,7 @@ for (let i =1 ; i < 13; i++) {
   let opt = document.createElement("option");
   opt.value = i;
   opt.innerText = month;
+  opt.className = "monthName";
   monthSelect.appendChild(opt);
 }
 

@@ -71,11 +71,11 @@ function updateSelectedDateBox(groupedData, topupGroupedData, selectedDate) {
     selectedDateBox.innerHTML = `<p>No data available for ${dateString}</p>`;
   }
 
-  if (topupData) {
-    updateTotalReceivedBox(topupData.cash, topupData.online);
-  } else {
-    updateTotalReceivedBox(0, 0);
-  }
+  // if (topupData) {
+  //   updateTotalReceivedBox(topupData.cash, topupData.online);
+  // } else {
+  //   updateTotalReceivedBox(0, 0);
+  // }
 }
 
 function convertToIST(date) {
@@ -101,8 +101,43 @@ function getDayOfWeek(date) {
   return daysOfWeek[date.getDay()];
 }
 
+function getMonthName(monthNumber) {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // Check if the monthNumber is valid (between 1 and 12)
+  if (monthNumber < 0 || monthNumber > 12) {
+    return "Invalid month number";
+  }
+
+  // Return the month name (subtract 1 because arrays are 0-indexed)
+  return monthNames[monthNumber - 1];
+}
+
+for (let i =1 ; i < 13; i++) {
+  const month = getMonthName(i);
+  let monthSelect = document.getElementById("mainMonth");
+  let opt = document.createElement("option");
+  opt.className="monthName";
+  opt.value = i;
+  opt.innerText = month;
+  monthSelect.appendChild(opt);
+}
+
 function groupDataByDate(frames, month, year) {
-  console.log('month', month);
+  console.log('month func', month);
   
   const groupedData = {};
   let totalTableMoney = 0;
@@ -207,11 +242,11 @@ function updateSelectedDateBox(groupedData, topupGroupedData, selectedDate) {
     selectedDateBox.innerHTML = `<p>No data available for ${dateString}</p>`;
   }
 
-  if (topupData) {
-    updateTotalReceivedBox(topupData.cash, topupData.online);
-  } else {
-    updateTotalReceivedBox(0, 0);
-  }
+  // if (topupData) {
+  //   updateTotalReceivedBox(topupData.cash, topupData.online);
+  // } else {
+  //   updateTotalReceivedBox(0, 0);
+  // }
 }
 
 let analyticsChart = null; // Initialize as null
@@ -300,8 +335,13 @@ async function init1(framesData, topupData) {
   console.log("Studio:", Studio);
 
   const currentDate = new Date();
+  console.log('currentDate', currentDate)
   const currentMonth = currentDate.getMonth(); // 0-11 (0 for January, 11 for December)
   const currentYear = currentDate.getFullYear();
+
+  const selectedMonth = document.getElementById("mainMonth");
+  selectedMonth.value= currentMonth+1;
+
 
   try {
     // const framesData = await fetchData("frames", Studio);
@@ -316,12 +356,12 @@ async function init1(framesData, topupData) {
     }
 
     // Filter frames and topup data by the current month and year
-    const { groupedData, totalTableMoney } = groupDataByDate(
+    let { groupedData, totalTableMoney } = groupDataByDate(
       framesData,
       currentMonth,
       currentYear
     );
-    const topupGroupedData = groupTopupDataByDate(
+    let topupGroupedData = groupTopupDataByDate(
       topupData,
       currentMonth,
       currentYear
@@ -331,11 +371,46 @@ async function init1(framesData, topupData) {
     updateChart(groupedData);
     updateTotalMoneyBox(totalTableMoney);
 
+    
+    
+    selectedMonth.addEventListener("change",(event )=>{
+      const month = parseInt(event.target.value)-1;
+      
+      let { groupedData, totalTableMoney } = groupDataByDate(
+        framesData,
+        month,
+        currentYear
+      );
+      topupGroupedData = groupTopupDataByDate(
+        topupData,
+        month,
+        currentYear
+      );
+  
+      // Display the chart for the selected month
+      updateChart(groupedData);
+      updateTotalMoneyBox(totalTableMoney);
+    })
+
     const datePicker = document.getElementById("datePicker");
     datePicker.addEventListener("change", () => {
       const selectedDate = datePicker.value;
+      console.log('selectedDate', selectedDate)
+      let month =parseInt( selectedDate.split("-")[1]) - 1;
+      let { groupedData, totalTableMoney } = groupDataByDate(
+        framesData,
+        month,
+        currentYear
+      );
+      topupGroupedData = groupTopupDataByDate(
+        topupData,
+        month,
+        currentYear
+      );
       updateSelectedDateBox(groupedData, topupGroupedData, selectedDate);
+      console.log('groupedData', groupedData)
     });
+    
 
     // Set up date click event listeners
     const analyticsChartCanvas = document.getElementById("analyticsChart");
@@ -350,14 +425,14 @@ async function init1(framesData, topupData) {
         if (points.length > 0) {
           const firstPoint = points[0];
           const label = analyticsChart.data.labels[firstPoint.index];
-          consle.log("label is ", label);
+          console.log("label is ", label);
           updateSelectedDateBox(groupedData, topupGroupedData, label);
         }
       };
     }
 
     // Initialize total received box with 0 cash and online values
-    updateTotalReceivedBox(0, 0);
+    // updateTotalReceivedBox(0, 0);
   } catch (error) {
     console.error("Error initializing app:", error);
   }

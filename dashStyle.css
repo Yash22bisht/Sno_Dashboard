@@ -29,34 +29,111 @@ header{
     height:  65px;
 }
 
-#studioDets{
+#studioDets,#occupancy, .topupSection{
+    text-align: center;
     background: #33363B;
     margin: 15px;
     padding: 10px;
     border-radius: 10px;
     
+    
 }
 
 .headings{
-    display: inline;
+    display: inline-block;
     color: #01AB7A;
-    margin: 0 0 0 38%  ;
+    
 }
 
 .filter{
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
+    margin: 10px 0 ;
 
 }
-#datePicker{
+ .graph{
+    height:20vh;
+ }
+
+.monthInput{
     color: #22252B;
     width:120px;
     height: 25px;
     border-radius: 8px;
     padding: 2px 5px;
 }
-/* 
-#tableOccupancyChart{
-    height: 50px;
-} */
+.monthName{
+    color: #22252B;
+    padding: 2px 5px;
+}
+
+.dateInput{
+    color: #22252B;
+    width:120px;
+    height: 25px;
+    border-radius: 8px;
+    padding: 2px 5px;
+}
+/* Table Styling */
+#topupTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #33363B; /* Dark background */
+    color: white; /* White text */
+    text-align: center; /* Center align text */
+  }
+  
+  #topupTable th,
+  #topupTable td {
+    padding: 10px;
+    border: 1px solid #44484F; /* Slightly lighter border */
+  }
+  
+  #topupTable thead {
+    background-color: #44484F; /* Slightly lighter header background */
+  }
+  
+  #topupTable tbody tr:nth-child(even) {
+    background-color: #3A3F44; /* Alternate row color */
+  }
+  
+  #topupTable tbody tr:hover {
+    background-color: #50575D; /* Highlight on hover */
+  }
+  
+  #topupTable th {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Styling the Summary Box */
+  .summary-box {
+    background-color: #33363B; /* Dark background */
+    color: white; /* White text */
+    padding: 10px;
+    margin: 20px 0;
+    border: 2px solid #72757a; /* Lighter border for contrast */
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  
+  .summary-box p {
+    margin: 0 0 10px;
+    font-weight: bold;
+  }
+  
+  .summary-box span {
+    font-weight: normal;
+  }
+  
+  /* For date selectors and inputs */
+  /* input[type="date"],
+  select {
+    background-color: #3A3F44;
+    color: white;
+    border: 1px solid #50575D;
+    padding: 5px;
+    border-radius: 5px;
+  } */
+  

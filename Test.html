@@ -20,7 +20,11 @@
         <h1 class="headings">Studio Details</h1>
         <div class="filter">
             <h3>Select Date</h3>
-            <input type="date" id="datePicker" />
+            <input type="date" id="datePicker" class="dateInput" />
+            <label for="month">Select Month</label>
+            <select name="month" id="mainMonth" class="monthInput">
+
+            </select>
         </div>
 
         <div id="selectedDateBox"></div> <!-- Display details for selected date -->
@@ -40,13 +44,13 @@
 
     <div id="occupancy">
         <header>
-            <h1>Snooker Table Occupancy </h1>
+            <h1 class="headings">Snooker Table Occupancy </h1>
         </header>
 
         <div class="container">
             <div style="text-align: left;">
                 <label for="dateSelectorOccup">Select Date:</label>
-                <input type="date" id="dateSelectorOccup">
+                <input type="date" id="dateSelectorOccup" class="dateInput">
             </div>
             <div id="tableOccupancyChart" class="chart-container"></div>
         </div>
@@ -54,48 +58,52 @@
 
     <!-- topUp -->
 
-    <div class="container my-4" id="topup"></div>
-    <!-- Heading -->
-    <h1>Topup Data</h1>
+    <div class="topupSection">
+        <div class="container my-4" id="topup"></div>
+        <!-- Heading -->
+        <h1 class="headings">Topup Data</h1>
 
-    <!-- Modern Summary Box -->
-    <div class="summary-box">
-        <p>Total Topup: <span id="totalTopup">0.00</span></p>
-        <p>Online Total: <span id="onlineTotal">0.00</span></p>
-        <p>Cash Total: <span id="cashTotal">0.00</span></p>
-    </div>
+        <!-- Modern Summary Box -->
+        <div class="summary-box">
+            <p>Total Topup: <span id="totalTopup">0.00</span></p>
+            <p>Online Total: <span id="onlineTotal">0.00</span></p>
+            <p>Cash Total: <span id="cashTotal">0.00</span></p>
+        </div>
 
-    <!-- Date Selector -->
-    <div class="row justify-content-center mb-4">
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="input-group">
-                <label for="dateSelectorTop" class="input-group-text">Select Date</label>
-                <input type="date" id="dateSelectorTop" class="form-control">
+        <!-- Date Selector -->
+        <div class="filter">
+            <label for="dateSelectorTop" class="input-group-text">Select Date</label>
+            <input type="date" id="dateSelectorTop" class="form-control dateInput">
+
+            <label for="month">Select Month</label>
+            <select name="month" id="month" class="monthInput"> </select>
+        </div>
+        <!-- <div class="row justify-content-center mb-4">
+            <div class="col-12 col-sm-6 col-md-4">
             </div>
+        </div> -->
+
+
+       
+
+        <!-- Topup Table -->
+        <div class="table-responsive">
+            <table id="topupTable" class="table table-bordered table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Total Topup</th>
+                        <th>Online</th>
+                        <th>Cash</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically inserted here by JavaScript -->
+                </tbody>
+            </table>
         </div>
     </div>
-    <label for="month">Select Month</label>
-    <select name="month" id="month">
 
-    </select>
-
-    <!-- Topup Table -->
-    <div class="table-responsive">
-        <table id="topupTable" class="table table-bordered table-hover text-center">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Total Topup</th>
-                    <th>Online</th>
-                    <th>Cash</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Table rows will be dynamically inserted here by JavaScript -->
-            </tbody>
-        </table>
-    </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
