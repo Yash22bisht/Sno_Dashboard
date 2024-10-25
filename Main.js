@@ -137,15 +137,16 @@ for (let i =1 ; i < 13; i++) {
 }
 
 function groupDataByDate(frames, month, year) {
-  console.log('month func', month);
+  // console.log('month func', typeof(month));
   
   const groupedData = {};
   let totalTableMoney = 0;
 
   frames.forEach((frame) => {
-    const date = convertToIST(frame.StartTime);
-    // console.log('date', date)
-    if (!date || isNaN(date.getTime())) {
+    forWeek = convertToIST(frame.StartTime);
+    const date = new Date(frame.StartTime).toISOString().split("T")[0];
+
+    if (!date || isNaN(new Date(frame.StartTime).getTime())) {
       // Handle invalid dates
       console.error("Invalid date:", frame.StartTime);
       return;
@@ -154,20 +155,20 @@ function groupDataByDate(frames, month, year) {
     const duration = parseInt(frame.Duration, 10) || 0; // Assuming duration is already in minutes
     const totalMoney = parseFloat(frame.TotalMoney) || 0;
 
-    const frameMonth = date.getMonth(); // 0-11 for Jan-Dec
-    // console.log('frameMonth', frameMonth)
-    const frameYear = date.getFullYear();
+    const frameMonth = parseInt(date.split("-")[1]) - 1; //0-11
+    const frameYear = parseInt(date.split("-")[0]);
 
     // Filter only the frames in the current month and year
     if (frameMonth === month && frameYear === year) {
+
       // console.log('frameMonthSelected', frameMonth)
-      const day = date.getDate();       // Get day of the month
-      const monthString = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-indexed
-      const yearString = date.getFullYear();
+      const day = date.split("-")[2];       // Get day of the month
+      const monthString = date.split("-")[1].padStart(2, '0'); // Month is 0-indexed
+      const yearString = date.split("-")[0];
       
       const dateString = `${yearString}-${monthString}-${day.toString().padStart(2, '0')}`; // Get the date in YYYY-MM-DD format
       // console.log('dateString :', dateString ,"\n  frameMonth :",frameMonth ,"\n date :",date);
-      const dayOfWeek = getDayOfWeek(date);
+      const dayOfWeek = getDayOfWeek(forWeek);
 
       if (!groupedData[dateString]) {
         groupedData[dateString] = { duration: 0, totalMoney: 0, dayOfWeek };
@@ -335,7 +336,7 @@ async function init1(framesData, topupData) {
   console.log("Studio:", Studio);
 
   const currentDate = new Date();
-  console.log('currentDate', currentDate)
+  // console.log('currentDate', currentDate)
   const currentMonth = currentDate.getMonth(); // 0-11 (0 for January, 11 for December)
   const currentYear = currentDate.getFullYear();
 
@@ -344,12 +345,6 @@ async function init1(framesData, topupData) {
 
 
   try {
-    // const framesData = await fetchData("frames", Studio);
-    // // console.log("framesData",framesData)
-
-    // const topupData = await fetchData("topup", Studio);
-    // // console.log("topupData",topupData)
-
     if (framesData.length === 0 || topupData.length === 0) {
       console.error("No data available.");
       return;
