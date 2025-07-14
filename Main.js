@@ -153,7 +153,7 @@ function groupDataByDate(frames, month, year) {
     }
 
     const duration = parseInt(frame.Duration, 10) || 0; // Assuming duration is already in minutes
-    const totalMoney = parseFloat(frame.TotalMoney) || 0;
+    const totalMoney = parseFloat(frame.totalMoney2) || 0;
 
     const frameMonth = parseInt(date.split("-")[1]) - 1; //0-11
     const frameYear = parseInt(date.split("-")[0]);
