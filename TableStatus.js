@@ -16,7 +16,7 @@ function getParameterByNameSt(name, url = window.location.href) {
 
 async function createTableWisePerformanceGraph() {
   //const clubName = getParameterByNameSt("clubname");
-  const studio = getParameterByNameSt("studio");
+  const studio = getParameterByNameSt("studio")?.replace(/_/g, ' ');
   const data = await fetchData("tabledets", studio);
   console.log(data);
 
