@@ -332,7 +332,7 @@ async function init1(framesData, topupData) {
   const table = "frames";
 
   // Get the Studio parameter from the URL
-  const Studio = getParameterByName("Studio") || "Default Studio";
+  const Studio = getParameterByName("Studio")?.replace(/_/g, ' ') || "Default Studio";
   console.log("Studio:", Studio);
 
   const currentDate = new Date();
