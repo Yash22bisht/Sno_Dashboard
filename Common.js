@@ -28,7 +28,7 @@ function getParameterByName(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, ' ')); // Decode and replace "+" with space
 }
 
-const Studio = getParameterByName('Studio')
+const Studio = getParameterByName('Studio')?.replace(/_/g, ' ');
 var data;
 
 async function init() {
