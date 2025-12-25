@@ -280,7 +280,7 @@ function setDefaultDate() {
 
 // Initialize the app and fetch data
 async function init() {
-    const studio = getParameterByName("studio");
+    const studio = getParameterByName("studio")?.replace(/_/g, ' ');
     console.log('Studio:', studio);
 
     const currentDate = new Date();
